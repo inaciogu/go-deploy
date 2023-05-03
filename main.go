@@ -4,9 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load("/etc/secrets/.env")
+	if err != nil {
+		panic(err)
+	}
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("<h1>Go test deploy</h1>"))
 	})
